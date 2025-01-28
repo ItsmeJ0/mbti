@@ -9,23 +9,21 @@ class SoalP extends Model
 {
     use HasFactory;
     protected $table = 'soal_p';
-    public static function ProsesJawabanP($betaNodeP)
+    public static function ProsesJawabanP($betaNode)
     {
         $bobotSoalP = [ // Bobot Soal (Alpha Nodes)
-            'p43'=> 1,
-            'p44'=> 1,
-            'p45'=> 0.5,
-            'p46'=> 0.75,
-            'p47'=> 0.75,
-            'p48'=> 0.5,
-            'p49'=> 0.25,
-            'p53'=> 0.25,
+            'p49'=> 1,
+            'p50'=> 0.5,
+            'p51'=> 0.25,
+            'p52'=> 0.75,
+            'p53'=> 0.75,
+            'p54'=> 0.75,
         ];
 
         $totalJawaban = 0;
         $totalBobotJawaban  = 0;
 
-        foreach ($betaNodeP as $id => $value) {
+        foreach ($betaNode as $id => $value) {
             if (isset($bobotSoalP[$id])) { // Pastikan soal ada di daftar bobot
                 $bobot = $bobotSoalP[$id];
                 $hasil = $bobot * $value;
