@@ -53,8 +53,8 @@ class SoalTFController extends Controller
                 $betaNodeF[$key] = $value;
             }
         }
-        $hasilT = SoalT::ProsesJawabanI($betaNodeT);
-        $hasilF = SoalF::ProsesJawabanE($betaNodeF);
+        $hasilT = SoalT::ProsesJawabanT($betaNodeT);
+        $hasilF = SoalF::ProsesJawabanF($betaNodeF);
         if ($hasilT > $hasilF) {
             Pengguna::where('id', $pengguna_id)->update(['T' => 1]);
         } elseif ($hasilT < $hasilF) {

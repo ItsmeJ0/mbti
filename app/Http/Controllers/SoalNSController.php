@@ -41,7 +41,7 @@ class SoalNSController extends Controller
         }
         return redirect()->route('external.soal3');
     }
-    public function inputdataIE(Request $request)
+    public function inputdataNS(Request $request)
     {
         $pengguna_id = session('pengguna_id');
         $datajawaban = $request->all();
@@ -81,14 +81,14 @@ class SoalNSController extends Controller
                 $betaNodeS[$key] = $value;
             }
         }
-        $hasilN = SoalN::ProsesJawabanI($betaNodeN);
-        $hasilS = SoalS::ProsesJawabanE($betaNodeS);
+        $hasilN = SoalN::ProsesJawabanN($betaNodeN);
+        $hasilS = SoalS::ProsesJawabanS($betaNodeS);
         if ($hasilN > $hasilS) {
             Pengguna::where('id', $pengguna_id)->update(['N' => 1]);
         } elseif ($hasilN < $hasilS) {
             Pengguna::where('id', $pengguna_id)->update(['S' => 1]);
         }
         // return view('testinghasiljawaban', compact('hasilN', 'hasilS'));
-        return redirect()->route('external.soal2');
+        return redirect()->route('external.soal3');
     }
 }
