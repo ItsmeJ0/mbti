@@ -13,41 +13,10 @@ class SoalIEController extends Controller
     //
     public function index()
     {
-        // $SoalI = SoalI::get();
-        // $SoalE = SoalE::get();
-        // return view('soal.tes', compact('SoalI', 'SoalE'));
         return view('soal.tes');
     }
 
-    public function inputdataIExxx(Request $request)
-    {
-        $pengguna_id = session('pengguna_id');
-        $data = $request->all();
-        // dd($data);
-        $soalI = [];
-        $soalE = [];
-        foreach ($data as $key => $value) {
-            if (Str::startsWith($key,  ['p1', 'p2'])) {
-                // $soalI[$key] = $value;
-                $soalI[$key] = $key;
-                dd($soalI[$key]);
-            } elseif (Str::startsWith($key, 'e')) {
-                $soalE[$key] = $value;
-            }
-        }
-        $hasilI = SoalI::ProsesJawabanI($soalI);
-        $hasilE = SoalE::ProsesJawabanE($soalE);
-        if ($hasilI > $hasilE) {
-            Pengguna::where('id', $pengguna_id)->update(['I' => 1]);
-        } elseif ($hasilI < $hasilE) {
-            Pengguna::where('id', $pengguna_id)->update(['E' => 1]);
-        }
-        // return view('testinghasiljawaban', compact('hasilI', 'hasilE'));
-        return redirect()->route('external.soal2', [
-            'soalI' => $soalI,
-            'soalE' => $soalE,
-        ]);
-    }
+    
     public function inputdataIE(Request $request)
     {
         $pengguna_id = session('pengguna_id');
@@ -98,5 +67,35 @@ class SoalIEController extends Controller
         }
         // return view('testinghasiljawaban', compact('hasilI', 'hasilE'));
         return redirect()->route('external.soal2');
+    }
+
+    public function inputdataIExxx(Request $request)
+    {
+        $pengguna_id = session('pengguna_id');
+        $data = $request->all();
+        // dd($data);
+        $soalI = [];
+        $soalE = [];
+        foreach ($data as $key => $value) {
+            if (Str::startsWith($key,  ['p1', 'p2'])) {
+                // $soalI[$key] = $value;
+                $soalI[$key] = $key;
+                dd($soalI[$key]);
+            } elseif (Str::startsWith($key, 'e')) {
+                $soalE[$key] = $value;
+            }
+        }
+        $hasilI = SoalI::ProsesJawabanI($soalI);
+        $hasilE = SoalE::ProsesJawabanE($soalE);
+        if ($hasilI > $hasilE) {
+            Pengguna::where('id', $pengguna_id)->update(['I' => 1]);
+        } elseif ($hasilI < $hasilE) {
+            Pengguna::where('id', $pengguna_id)->update(['E' => 1]);
+        }
+        // return view('testinghasiljawaban', compact('hasilI', 'hasilE'));
+        return redirect()->route('external.soal2', [
+            'soalI' => $soalI,
+            'soalE' => $soalE,
+        ]);
     }
 }

@@ -1,35 +1,6 @@
-<?php
-
-if (isset($_POST['submit'])) {
-    if (empty($_POST['nama'])) {
-        $message[] = 'Masukan Nama!';
-    } else {
-        $nama = mysqli_real_escape_string($conn1, $_POST['nama']);
-        $E = 0;
-        $I = 0;
-        $N = 0;
-        $S = 0;
-        $T = 0;
-        $F = 0;
-        $J = 0;
-        $P = 0;
-        $hasil = 0;
-        $result = mysqli_query($conn1, "INSERT INTO `user` (nama, E, I, N, S, T, F, J, P, hasil) VALUES ('$nama', '$E', '$I', '$N', '$S', '$T', '$F', '$J', '$P',  '$hasil')");
-        if ($result) {
-            $_SESSION['nama'] = $nama;
-            header('location: tes.php');
-        } else {
-            echo "Error: " . mysqli_error($conn1);
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <body>
-
     @include('partials.nav')
     <header>
         <div class="container">
@@ -52,16 +23,10 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </header>
-
     @include('partials.footer')
-
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/wow/wow.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
-
 </html>

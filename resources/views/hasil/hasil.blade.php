@@ -11,7 +11,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 py-3 pr-lg-5 wow fadeInUp">
                         <h2 class="title-section">Tipe Anda adalah<br> {{ str_replace(',', '', $tipembti) }}</h2>
-                        <p>Jurusan yang cocok untuk Anda:</p>
+                        <p>Jurusan di UKDC yang cocok untuk Anda:</p>
                         @foreach ($jurusan_ukdc as $jukdc)
                         <ul class="theme-list theme-list-light text-white">
                             <li>
@@ -35,8 +35,8 @@
                     </div>
                 </div>
             </div>
-        </div> <!-- .wrap -->
-    </div> <!-- .page-section -->
+        </div> 
+    </div> 
 
     @include('partials.footer')
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>

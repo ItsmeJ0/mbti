@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('partials.nav')
+
 <head>
     <style>
         .custom-radio input[type="radio"]:checked+.custom-control-label::before {
             background-color: #ff5733;
-            /* Ubah warna ini sesuai kebutuhan */
             border-color: #ff5733;
         }
 
         .custom-radio .custom-control-input:not(:checked)+.custom-control-label::before {
             border-color: #ff5733;
-            /* Warna border saat tidak dipilih */
         }
     </style>
 </head>
+
 <body>
+    @include('partials.nav')
     <div class="back-to-top"></div>
     <!-- Banner info -->
     <div class="page-section banner-info">
@@ -28,8 +28,8 @@
                 </div>
             </div>
         </div>
-    </div> 
-    <div class="page-section">
+    </div>
+    <div class="page-section"><!-- section untuk halaman soal MBTI -->
         <div class="container">
             <form action="{{ route('external.actioninputhasil') }}" method="POST">
                 @csrf

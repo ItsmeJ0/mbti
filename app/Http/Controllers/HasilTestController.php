@@ -34,8 +34,6 @@ class HasilTestController extends Controller
             }
         }
     }
-
-
     private function tentukanKepribadian($user)
     {
         $kesimpulan = [];

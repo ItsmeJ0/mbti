@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class SoalI extends Model
 {
     use HasFactory;
-    protected $table = 'soal_i';
     public static function ProsesJawabanI($betaNodeI)
     {
         $bobotSoalI = [ // Bobot Soal (Alpha Nodes)
@@ -24,10 +20,8 @@ class SoalI extends Model
             'p12' => 0.5,
             'p14' => 0.25,
         ];
-
         $totalJawaban = 0;
         $totalBobotJawaban  = 0;
-
         foreach ($betaNodeI as $id => $value) {
             if (isset($bobotSoalI[$id])) { // Pastikan soal ada di daftar bobot
                 $bobot = $bobotSoalI[$id];
@@ -36,11 +30,8 @@ class SoalI extends Model
                 $totalJawaban += $hasil;
             }
         }
-
         // Hitung hasil Rete I
         $hasilReteI = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
-
-        // dd($hasilReteI);
         return $hasilReteI;
     }
 }

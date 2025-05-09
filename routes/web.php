@@ -9,17 +9,6 @@ use App\Http\Controllers\SoalNSController;
 use App\Http\Controllers\SoalTFController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', [HomeController::class, 'index'])->name('external.home');
 Route::get('/inputnama', [InputNamaController::class, 'index'])->name('external.inputnama');
 Route::post('/inputnama-action', [InputNamaController::class, 'inputnama'])->name('external.actioninputnama');
@@ -32,7 +21,4 @@ Route::post('/soal3-action', [SoalTFController::class, 'inputdataTF'])->name('ex
 Route::get('/soal4', [SoalJPController::class, 'index'])->name('external.soal4');
 Route::post('/soal4-action', [SoalJPController::class, 'inputdataJP'])->name('external.actioninputhasil4');
 Route::get('/Hasil-proses', [HasilTestController::class, 'index'])->name('external.proseshasil');
-// Route::get('/', function () {
-    
-    // return view('welcome');
-// });
+

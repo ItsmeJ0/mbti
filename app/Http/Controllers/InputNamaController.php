@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
-
 class InputNamaController extends Controller
 {
     //
@@ -29,8 +26,6 @@ class InputNamaController extends Controller
         ]);
         $id = $pengguna->id;
         session(['pengguna_id' => $id]);
-
-        return redirect()->route('external.soal1')->with([
-        ]);
+        return redirect()->route('external.soal1')->with([]);
     }
 }

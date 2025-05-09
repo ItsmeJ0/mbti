@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/maincons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}"> -->
-</head>
-
 <body>
     <header>
-
         @include('partials.nav')
         <div class="container">
-            <div class="page-banner home-banner">
+            <div class="page-banner home-banner"><!-- bagian section halaman utama-->
                 <div class="row align-items-center flex-wrap-reverse h-100">
                     <div class="col-md-6 py-5 wow fadeInLeft">
                         <h1 class="mb-4">Cek dan Optimalkan Tipe MBTI Anda!</h1>
@@ -27,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <form id="myForm" method="GET" action="{{ route('external.inputnama') }}">
+            <form id="myForm" method="GET" action="{{ route('external.inputnama') }}"><!-- bagian section untuk pindah kehalaman form inputan nama -->
                 <div class="page-section">
                     <div class="container">
                         <div class="row align-items-center">
@@ -46,12 +39,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <!-- .container -->
-                </div> <!-- .page-section -->
+                    </div> 
+                </div> 
             </form>
         </div>
     </header>
-
     <div class="page-section bg-light" id="about">
         <div class="container">
             <div class="text-center wow fadeInUp">
@@ -59,8 +51,7 @@
                 <h2 class="title-section">Tipe MBTI</h2>
                 <div class="divider mx-auto"></div>
             </div>
-
-            <div class="row">
+            <div class="row"><!-- bagian container gambar setiap kepribadian -->
                 <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
                     <div class="features">
                         <!-- <div class="header mb-3"> -->
@@ -208,19 +199,10 @@
             </div>
         </div> <!-- .container -->
     </div> <!-- .page-section -->
-
-
     @include('partials.footer')
-    <!-- <script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script> -->
-
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/vendor/wow/wow.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/theme.js') }}"></script>
-
 </body>
-
 </html>
