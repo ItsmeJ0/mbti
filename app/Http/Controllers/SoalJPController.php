@@ -14,9 +14,10 @@ class SoalJPController extends Controller
     //
     public function index()
     {
-        $SoalJ = SoalJ::get();
-        $SoalP = SoalP::get();
-        return view('soal.tes4', compact('SoalJ', 'SoalP'));
+        // $SoalJ = SoalJ::get();
+        // $SoalP = SoalP::get();
+        // return view('soal.tes4', compact('SoalJ', 'SoalP'));
+        return view('soal.tes4');
     }
 
     public function inputdataJP(Request $request)

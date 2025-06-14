@@ -13,9 +13,10 @@ class SoalTFController extends Controller
     //
     public function index()
     {
-        $SoalT = SoalT::get();
-        $SoalF = SoalF::get();
-        return view('soal.tes3', compact('SoalT', 'SoalF'));
+        // $SoalT = SoalT::get();
+        // $SoalF = SoalF::get();
+        // return view('soal.tes3', compact('SoalT', 'SoalF'));
+        return view('soal.tes3');
     }
 
     public function inputdataTF(Request $request)
