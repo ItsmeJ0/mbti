@@ -42,7 +42,7 @@
                     <br>
                     <label for="p15">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p15-1" name="p15" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p15-1" name="p15" value="-0.4" required>
                         <label for="p15-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -68,7 +68,7 @@
                     <br>
                     <label for="p16">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p16-1" name="p16" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p16-1" name="p16" value="-0.4" required>
                         <label for="p16-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -94,7 +94,7 @@
                     <br>
                     <label for="p17">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p17-1" name="p17" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p17-1" name="p17" value="-0.4" required>
                         <label for="p17-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -120,7 +120,7 @@
                     <br>
                     <label for="p18">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p18-1" name="p18" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p18-1" name="p18" value="-0.4" required>
                         <label for="p18-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -146,7 +146,7 @@
                     <br>
                     <label for="p19">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p19-1" name="p19" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p19-1" name="p19" value="-0.4" required>
                         <label for="p19-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -172,7 +172,7 @@
                     <br>
                     <label for="p20">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p20-1" name="p20" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p20-1" name="p20" value="-0.4" required>
                         <label for="p20-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -198,7 +198,7 @@
                     <br>
                     <label for="p21">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p21-1" name="p21" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p21-1" name="p21" value="-0.4" required>
                         <label for="p21-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -224,7 +224,7 @@
                     <br>
                     <label for="p22">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p22-1" name="p22" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p22-1" name="p22" value="-0.4" required>
                         <label for="p22-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -250,7 +250,7 @@
                     <br>
                     <label for="p23">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p23-1" name="p23" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p23-1" name="p23" value="-0.4" required>
                         <label for="p23-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -276,7 +276,7 @@
                     <br>
                     <label for="p24">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p24-1" name="p24" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p24-1" name="p24" value="-0.4" required>
                         <label for="p24-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -302,7 +302,7 @@
                     <br>
                     <label for="p25">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p25-1" name="p25" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p25-1" name="p25" value="-0.4" required>
                         <label for="p25-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -328,7 +328,7 @@
                     <br>
                     <label for="p26">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p26-1" name="p26" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p26-1" name="p26" value="-0.4" required>
                         <label for="p26-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -354,7 +354,7 @@
                     <br>
                     <label for="p27">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p27-1" name="p27" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p27-1" name="p27" value="-0.4" required>
                         <label for="p27-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">
@@ -380,7 +380,7 @@
                     <br>
                     <label for="p28">Tidak</label>
                     <div class="custom-control custom-radio d-inline-block mr-3">
-                        <input class="custom-control-input custom-control-input" type="radio" id="p28-1" name="p28" value="-0.4">
+                        <input class="custom-control-input custom-control-input" type="radio" id="p28-1" name="p28" value="-0.4" required>
                         <label for="p28-1" class="custom-control-label">1 </label>
                     </div>
                     <div class="custom-control custom-radio d-inline-block mr-3">

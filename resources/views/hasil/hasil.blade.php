@@ -20,10 +20,10 @@
                         </ul>
                         @endforeach
                         <p>Jurusan lain yang cocok untuk Anda:</p>
-                        @foreach ($jurusan as $jurusan)
+                        @foreach ($jurusan as $nama_jurusan)
                         <ul class="theme-list theme-list-light text-white">
                             <li>
-                                <p>{{ $jurusan->nama_jurusan }}</p>
+                                <p>{{ $nama_jurusan }}</p>
                             </li>
                         </ul>
                         @endforeach
@@ -35,8 +35,8 @@
                     </div>
                 </div>
             </div>
-        </div> 
-    </div> 
+        </div>
+    </div>
 
     @include('partials.footer')
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
