@@ -154,7 +154,7 @@
                 <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
                     <div class="features">
                         <!-- <div class="header mb-3"> -->
-                        <img src="{{ asset('assets/img/ESFJ.png') }}" alt="" width="100" height="100">
+                        <img src="{{ asset('assets/img/ESFJ .png') }}" alt="" width="100" height="100">
                         <!-- </div> -->
                         <h5>Pengawal - ESFJ </h5>
                         <p>Pribadi yang penuh perhatian,supel,dan banyak dikenal,selalu ingin membantu</p>
