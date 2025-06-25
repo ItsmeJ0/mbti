@@ -11,7 +11,7 @@
                         <h1 class="mb-4">Cek dan Optimalkan Tipe MBTI Anda!</h1>
                         <p class="text-lg text-grey mb-5">Tingkatkan potensi terbesar yang pernah Anda bangun untuk masa depan
                         </p>
-                        <a href="#about" class="btn btn-primary btn-split">Tipe Personaliti <div class="fab"><span class="mai-play"></span></div></a>
+                        <a href="#about" class="btn btn-primary btn-split">Tipe Personaliti <div class="fab"><span class="mai-play"></span><i class="fa-solid fa-play"></i></div></a>
                     </div>
                     <div class="col-md-6 py-5 wow zoomIn">
                         <div class="img-fluid text-center">
