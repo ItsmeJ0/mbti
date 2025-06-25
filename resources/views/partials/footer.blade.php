@@ -26,9 +26,9 @@
                 <div class="col-lg-3 py-3">
                     <h3>Media Sosial</h3>
                     <div class="social-media-button">
-                        <a href="https://www.facebook.com/Prodi-Teknik-Informatika-UKDC-295323257794884/" target="_blank"><span class="mai-logo-facebook-f"></span></a>
-                        <a href="https://www.instagram.com/ifdarmacendika/" target="_blank"><span class="mai-logo-instagram"></span></a>
-                        <a href="https://www.youtube.com/@DCInformatics" target="_blank"><span class="mai-logo-youtube"></span></a>
+                        <a href="https://www.facebook.com/Prodi-Teknik-Informatika-UKDC-295323257794884/" target="_blank"><span class="fab fa-facebook-f" ></span></a>
+                        <a href="https://www.instagram.com/ifdarmacendika/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@DCInformatics" target="_blank"><span class="mai-logo-youtube"></span><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 

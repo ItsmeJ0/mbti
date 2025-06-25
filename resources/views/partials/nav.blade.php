@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/maincons.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 </head>
 
