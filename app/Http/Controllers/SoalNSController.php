@@ -67,8 +67,12 @@ class SoalNSController extends Controller
             'nilai_S' => $hasilS,
         ]);
         if ($hasilN > $hasilS) {
+            Pengguna::where('id', $pengguna_id)->update(['S' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['N' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['N' => 1]);
         } elseif ($hasilN < $hasilS) {
+            Pengguna::where('id', $pengguna_id)->update(['N' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['S' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['S' => 1]);
         }
         // return view('testinghasiljawaban', compact('hasilN', 'hasilS'));

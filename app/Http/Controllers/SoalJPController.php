@@ -63,8 +63,12 @@ class SoalJPController extends Controller
             'nilai_P' => $hasilP,
         ]);
         if ($hasilJ > $hasilP) {
+            Pengguna::where('id', $pengguna_id)->update(['P' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['J' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['J' => 1]);
         } elseif ($hasilJ < $hasilP) {
+            Pengguna::where('id', $pengguna_id)->update(['J' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['P' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['P' => 1]);
         }
         // return view('testinghasiljawaban', compact('hasilJ', 'hasilP'));

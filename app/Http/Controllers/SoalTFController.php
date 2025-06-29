@@ -62,8 +62,12 @@ class SoalTFController extends Controller
             'nilai_F' => $hasilF,
         ]);
         if ($hasilT > $hasilF) {
+            Pengguna::where('id', $pengguna_id)->update(['T' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['F' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['T' => 1]);
         } elseif ($hasilT < $hasilF) {
+            Pengguna::where('id', $pengguna_id)->update(['T' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['F' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['F' => 1]);
         }
         // return view('testinghasiljawaban', compact('hasilT', 'hasilF'));

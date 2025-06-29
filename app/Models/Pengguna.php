@@ -13,8 +13,21 @@ class Pengguna extends Model
     protected $primaryKey = 'id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+    // protected $fillable = [
+    //     'nama',
+    //     'E',
+    //     'I',
+    //     'N',
+    //     'S',
+    //     'T',
+    //     'F',
+    //     'J',
+    //     'P',
+    //     'hasil',
+    // ];
     protected $fillable = [
         'nama',
+        'email',
         'E',
         'I',
         'N',
@@ -24,7 +37,11 @@ class Pengguna extends Model
         'J',
         'P',
         'hasil',
+        'otp',
+        'otp_expiry',
+        'is_verified',
     ];
+    
     public static function SimpanData($jawabanI)
     {}
 }

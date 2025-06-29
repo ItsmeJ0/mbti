@@ -8,14 +8,19 @@
             <div class="page-banner home-banner">
                 <div class="row align-items-center flex-wrap-reverse h-100">
                     <div class="col-md-6 py-5 wow fadeInLeft">
-                        <h1 class="mb-4">Lengkapi Data Mu!</h1>
-                        <form id="myForm" method="POST" action="{{ route('external.actioninputnama') }}">
+                        <h1 class="mb-4">Verifikasi OTP</h1>
+                        @if($errors->any())
+                        <p style="color:red">{{ $errors->first() }}</p>
+                        @endif
+
+                        <form method="POST" action="{{ route('otp.verify') }}">
                             @csrf
-                            <p class="text-lg text-grey">Nama :</p>
-                            <input type="text" class="text-lg text-grey mb-5" name="nama" required>
-                            <p class="text-lg text-grey">Email :</p>
-                            <input type="text" class="text-lg text-grey mb-5" name="email" required></br>
-                            <button type="submit" class="btn btn-primary btn" name="submit">Mulai Test</button>
+                            <input type="hidden" name="email" value="{{ session('email') }}">
+                            <input type="hidden" name="pengguna_id" value="{{ session('pengguna_id') }}">
+                            <label for="otp">Masukkan Kode OTP:</label>
+                            <input type="text" name="otp" maxlength="6" required>
+                            <button type="submit" class="btn btn-primary btn" name="submit">Verifikasi</button>
+
                         </form>
                     </div>
                     <div class="col-md-6 py-5 wow zoomIn">

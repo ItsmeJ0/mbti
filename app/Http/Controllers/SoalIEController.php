@@ -66,8 +66,12 @@ class SoalIEController extends Controller
             'nilai_E' => $hasilE,
         ]);
         if ($hasilI > $hasilE) {
+            Pengguna::where('id', $pengguna_id)->update(['I' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['E' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['I' => 1]);
         } elseif ($hasilI < $hasilE) {
+            Pengguna::where('id', $pengguna_id)->update(['I' => 0]);
+            Pengguna::where('id', $pengguna_id)->update(['E' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['E' => 1]);
         }
         // return view('testinghasiljawaban', compact('hasilI', 'hasilE'));
