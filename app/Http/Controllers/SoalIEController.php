@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use App\Models\SoalE;
 use App\Models\SoalI;
@@ -16,7 +17,7 @@ class SoalIEController extends Controller
         return view('soal.tes');
     }
 
-    
+
     public function inputdataIE(Request $request)
     {
         $pengguna_id = session('pengguna_id');
@@ -60,6 +61,10 @@ class SoalIEController extends Controller
         }
         $hasilI = SoalI::ProsesJawabanI($betaNodeI);
         $hasilE = SoalE::ProsesJawabanE($betaNodeE);
+        HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
+            'nilai_I' => $hasilI,
+            'nilai_E' => $hasilE,
+        ]);
         if ($hasilI > $hasilE) {
             Pengguna::where('id', $pengguna_id)->update(['I' => 1]);
         } elseif ($hasilI < $hasilE) {

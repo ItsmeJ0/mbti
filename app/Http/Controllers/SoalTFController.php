@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use App\Models\SoalF;
 use App\Models\SoalT;
@@ -56,11 +57,16 @@ class SoalTFController extends Controller
         }
         $hasilT = SoalT::ProsesJawabanT($betaNodeT);
         $hasilF = SoalF::ProsesJawabanF($betaNodeF);
+        HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
+            'nilai_T' => $hasilT,
+            'nilai_F' => $hasilF,
+        ]);
         if ($hasilT > $hasilF) {
             Pengguna::where('id', $pengguna_id)->update(['T' => 1]);
         } elseif ($hasilT < $hasilF) {
             Pengguna::where('id', $pengguna_id)->update(['F' => 1]);
         }
+        // return view('testinghasiljawaban', compact('hasilT', 'hasilF'));
         return redirect()->route('external.soal4');
     }
 }

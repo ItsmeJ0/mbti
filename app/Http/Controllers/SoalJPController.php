@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use App\Models\SoalJ;
 use App\Models\SoalP;
@@ -33,7 +34,7 @@ class SoalJPController extends Controller
             'p48',
             'p49',
             'p53',
-            
+
         ];
         $alphaNodeP = [ // Bobot Soal (Alpha Nodes)
             'p49',
@@ -57,11 +58,16 @@ class SoalJPController extends Controller
         }
         $hasilJ = SoalJ::ProsesJawabanJ($betaNodeJ);
         $hasilP = SoalP::ProsesJawabanP($betaNodeP);
+        HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
+            'nilai_J' => $hasilJ,
+            'nilai_P' => $hasilP,
+        ]);
         if ($hasilJ > $hasilP) {
             Pengguna::where('id', $pengguna_id)->update(['J' => 1]);
         } elseif ($hasilJ < $hasilP) {
             Pengguna::where('id', $pengguna_id)->update(['P' => 1]);
         }
+        // return view('testinghasiljawaban', compact('hasilJ', 'hasilP'));
         return redirect()->route('external.proseshasil');
     }
 }

@@ -1,5 +1,5 @@
 <label>
-    {{ $hasilI }}
+    hasil i : {{ $hasilJ }}
 </label><label>
-    {{ $hasilE }}
+    hasil E : {{ $hasilP }}
 </label>

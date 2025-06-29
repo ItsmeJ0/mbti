@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use App\Models\SoalN;
 use App\Models\SoalS;
@@ -19,28 +20,6 @@ class SoalNSController extends Controller
         return view('soal.tes2');
     }
 
-    public function inputdataNSxxxx(Request $request)
-    {
-        $pengguna_id = session('pengguna_id');
-        $data = $request->all();
-        $soalN = [];
-        $soalS = [];
-        foreach ($data as $key => $value) {
-            if (Str::startsWith($key, 'n')) {
-                $soalN[$key] = $value;
-            } elseif (Str::startsWith($key, 's')) {
-                $soalS[$key] = $value;
-            }
-        }
-        $hasilN = SoalN::ProsesJawabanN($soalN);
-        $hasilS = SoalS::ProsesJawabanS($soalS);
-        if ($hasilN > $hasilS) {
-            Pengguna::where('id', $pengguna_id)->update(['N' => 1]);
-        } elseif ($hasilN < $hasilS) {
-            Pengguna::where('id', $pengguna_id)->update(['S' => 1]);
-        }
-        return redirect()->route('external.soal3');
-    }
     public function inputdataNS(Request $request)
     {
         $pengguna_id = session('pengguna_id');
@@ -83,6 +62,10 @@ class SoalNSController extends Controller
         }
         $hasilN = SoalN::ProsesJawabanN($betaNodeN);
         $hasilS = SoalS::ProsesJawabanS($betaNodeS);
+        HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
+            'nilai_N' => $hasilN,
+            'nilai_S' => $hasilS,
+        ]);
         if ($hasilN > $hasilS) {
             Pengguna::where('id', $pengguna_id)->update(['N' => 1]);
         } elseif ($hasilN < $hasilS) {

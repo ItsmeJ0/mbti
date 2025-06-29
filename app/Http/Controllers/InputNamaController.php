@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 class InputNamaController extends Controller
@@ -26,6 +28,19 @@ class InputNamaController extends Controller
         ]);
         $id = $pengguna->id;
         session(['pengguna_id' => $id]);
+        HasilMBTI::create([
+            'pengguna_id' => session('pengguna_id'),
+            'nilai_I' => 0,
+            'nilai_E' => 0,
+            'nilai_S' => 0,
+            'nilai_N' => 0,
+            'nilai_T' => 0,
+            'nilai_F' => 0,
+            'nilai_J' => 0,
+            'nilai_P' => 0,
+            'hasil_tipe' => 0, // contoh: 'ENTP'
+        ]);
+        
         return redirect()->route('external.soal1')->with([]);
     }
 }
