@@ -70,15 +70,16 @@ class HasilTestController extends Controller
                 $jurusan = $rules[$tipembti];
                 $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
                 $dataChart = [
-                    $hasil->nilai_I * 100,
-                    $hasil->nilai_E * 100,
-                    $hasil->nilai_S * 100,
-                    $hasil->nilai_N * 100,
-                    $hasil->nilai_T * 100,
-                    $hasil->nilai_F * 100,
-                    $hasil->nilai_J * 100,
-                    $hasil->nilai_P * 100,
+                    max(10, $hasil->nilai_I * 100),
+                    max(10, $hasil->nilai_E * 100),
+                    max(10, $hasil->nilai_S * 100),
+                    max(10, $hasil->nilai_N * 100),
+                    max(10, $hasil->nilai_T * 100),
+                    max(10, $hasil->nilai_F * 100),
+                    max(10, $hasil->nilai_J * 100),
+                    max(10, $hasil->nilai_P * 100),
                 ];
+                
                 return view('hasil.hasil', compact('tipembti', 'jurusan', 'jurusan_ukdc', 'dataChart'));
             }
         }
