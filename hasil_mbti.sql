@@ -46,10 +46,6 @@ CREATE TABLE `hasil_mbti` (
 -- Dumping data for table `hasil_mbti`
 --
 
-INSERT INTO `hasil_mbti` (`id`, `pengguna_id`, `nilai_I`, `nilai_E`, `nilai_S`, `nilai_N`, `nilai_T`, `nilai_F`, `nilai_J`, `nilai_P`, `hasil_tipe`, `created_at`) VALUES
-(1, 54, 0.5625, 0.769231, 0, 0, 0, 0, 0, 0, '0', '2025-06-29 05:12:10'),
-(2, 55, 0.575, 0.818182, 0.625, 0.555556, 0.375, 0.625, 0.75, 0.666667, '0', '2025-06-29 05:17:23');
-
 --
 -- Indexes for dumped tables
 --
