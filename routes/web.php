@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('external.home');
 Route::get('/inputnama', [InputNamaController::class, 'index'])->name('external.inputnama');
 Route::post('/inputnama-action', [InputNamaController::class, 'inputnama'])->name('external.actioninputnama');
+Route::get('/otp/verify', [AuthOTPController::class, 'showOtpVerifyForm'])->name('otp.verify.form');
+Route::post('/otp/verify', [AuthOTPController::class, 'verifyOtp'])->name('otp.verify');
 Route::middleware(['verified.otp'])->group(function () {
     Route::get('/soal1', [SoalIEController::class, 'index'])->name('external.soal1');
     Route::post('/soal1-action', [SoalIEController::class, 'inputdataIE'])->name('external.actioninputhasil');
@@ -24,5 +26,3 @@ Route::middleware(['verified.otp'])->group(function () {
     Route::post('/soal4-action', [SoalJPController::class, 'inputdataJP'])->name('external.actioninputhasil4');
     Route::get('/Hasil-proses', [HasilTestController::class, 'index'])->name('external.proseshasil');
 });
-Route::get('/otp/verify', [AuthOTPController::class, 'showOtpVerifyForm'])->name('otp.verify.form');
-Route::post('/otp/verify', [AuthOTPController::class, 'verifyOtp'])->name('otp.verify');
