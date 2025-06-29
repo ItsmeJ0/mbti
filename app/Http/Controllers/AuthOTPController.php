@@ -11,11 +11,15 @@ class AuthOTPController extends Controller
     //
     public function showOtpVerifyForm()
     {
+        if (!session('pengguna_id')) {
+            return redirect('/')->withErrors(['otp' => 'Silakan isi data terlebih dahulu.']);
+        }
         return view('otp.verify');
     }
 
     public function verifyOtp(Request $request)
     {
+
         $request->validate([
             'otp' => 'required|digits:6',
         ]);
@@ -24,7 +28,6 @@ class AuthOTPController extends Controller
             ->where('otp', $request->otp)
             ->where('otp_expiry', '>=', Carbon::now())
             ->first();
-
         if ($user) {
             $user->update([
                 'is_verified' => true,

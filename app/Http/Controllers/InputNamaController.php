@@ -43,7 +43,8 @@ class InputNamaController extends Controller
             'otp_expiry' => Carbon::now()->addMinutes(10),
             'is_verified' => false,
         ]);
-        $id = session('pengguna_id');
+        $id = $pengguna->id;
+        session(['pengguna_id' => $id]);
         HasilMBTI::create([
             'pengguna_id' => session('pengguna_id'),
             'nilai_I' => 0,
@@ -58,7 +59,10 @@ class InputNamaController extends Controller
         ]);
         // Kirim OTP ke email
         Mail::to($request->email)->send(new OtpMail($otp));
-        
+        session([
+            'pengguna_id' => $pengguna->id,
+            'email' => $pengguna->email
+        ]);
         
         return redirect()->route('otp.verify.form')->with('pengguna_id', $pengguna->id);
         // return redirect()->route('external.soal1')->with([]);
