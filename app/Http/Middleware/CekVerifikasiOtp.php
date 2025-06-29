@@ -19,7 +19,7 @@ class CekVerifikasiOtp
         $id = session('pengguna_id');
 
         if (!$id || !Pengguna::find($id)) {
-            abort(403, 'Pengguna tidak ditemukan atau session tidak valid.');
+            return redirect('/');
         }
         return $next($request);
     }
