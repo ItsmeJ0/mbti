@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\HasilMbtiMail;
+use App\Mail\HasilMbtiWithPdf;
 use App\Models\HasilMBTI;
 use App\Models\Jurusan;
 use App\Models\Jurusan_ukdc;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class HasilTestController extends Controller
 {
@@ -63,11 +67,13 @@ class HasilTestController extends Controller
                     'ISTJ' => ['Akuntansi', 'Manajemen', 'Ilmu Komputer', 'Hukum', 'Sistem Informasi'],
                     'ISTP' => ['Teknik Mesin', 'Teknik Industri', 'Ilmu Komputer', 'Manajemen', 'Ilmu Kesehatan']
                 ];
-                
+
                 // Ambil data pekerjaan yang sesuai dengan tipe MBTI
                 // $jurusan = Jurusan::where('tipe_kepribadian', $tipembti)->get();
                 $jurusan_ukdc = Jurusan_ukdc::where('mbti', $tipembti)->get();
                 $jurusan = $rules[$tipembti];
+                $pengguna = Pengguna::find($pengguna_id);
+
                 $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
                 $dataChart = [
                     max(10, $hasil->nilai_I * 100),
@@ -79,7 +85,42 @@ class HasilTestController extends Controller
                     max(10, $hasil->nilai_J * 100),
                     max(10, $hasil->nilai_P * 100),
                 ];
+                $chartUrl = 'https://quickchart.io/chart?c=' . urlencode(json_encode([
+                    'type' => 'radar',
+                    'data' => [
+                        'labels' => ['I', 'E', 'S', 'N', 'T', 'F', 'J', 'P'],
+                        'datasets' => [[
+                            'label' => 'Skor MBTI',
+                            'data' => $dataChart,
+                            'borderColor' => 'rgba(54, 162, 235, 1)',
+                            'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
+                        ]]
+                    ],
+                    'options' => ['scale' => ['ticks' => ['beginAtZero' => true]]]
+                ]));
+
+                $imageData = file_get_contents($chartUrl);
+                $chartImage  = base64_encode($imageData);
                 
+                $pdf = app('dompdf.wrapper');
+                $pdf->loadView('pdf.pdfhasilmbti', [
+                    'nama' => $pengguna->nama,
+                    'tipe' => $tipembti,
+                    'jurusan_ukdc' => $jurusan_ukdc,
+                    'jurusan' => $jurusan,
+                    'chartImage' => $chartImage,
+                ]);
+
+                $pdfPath = storage_path('app/public/hasil_' . $pengguna->id . '.pdf');
+                $pdf->save($pdfPath);
+
+                // Kirim email
+                // Mail::to($pengguna->email)->send(new HasilMbtiWithPdf($pengguna->nama, $tipembti, $pdfPath));
+                
+                // Kirim email
+                Mail::to($pengguna->email)->send(new HasilMbtiMail($pengguna->nama, $tipembti, $jurusan_ukdc, $jurusan, $pdfPath));
+                unlink($pdfPath); // hapus file
+
                 return view('hasil.hasil', compact('tipembti', 'jurusan', 'jurusan_ukdc', 'dataChart'));
             }
         }
