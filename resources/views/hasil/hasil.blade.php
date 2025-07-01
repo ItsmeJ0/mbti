@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .highlight-ukdc {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-left: 4px solid #FFD700;
+        /* warna emas */
+        padding-left: 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .highlight-ukdc:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .a {
+        color: white;
+    }
+</style>
 
 <body>
     @include('partials.nav')
@@ -11,17 +29,20 @@
                 <div class="row align-items-center">
 
                     <div class="col-lg-6 py-3 pr-lg-5 wow fadeInUp">
-
-                        <h2 class="title-section">Tipe Anda adalah<br> {{ str_replace(',', '', $tipembti) }}</h2>
-                        <p>Jurusan di UKDC yang cocok untuk Anda:</p>
+                        <h2 class="title-section">Halo, {{ $namaUser }}!</h2>
+                        <h3 class="title-section"> kepribadian Anda adalah
+                            <strong>{{ str_replace(',', '', $tipembti) }}</strong>
+                        </h3>
+                        <p>{{ $penjelasanTipe }}</p>
+                        <h3>Jurusan di UKDC yang cocok untuk Anda:</h3>
                         @foreach ($jurusan_ukdc as $jukdc)
                         <ul class="theme-list theme-list-light text-white">
-                            <li>
-                                <p>{{ $jukdc->jurusan }}</p>
+                            <li class="highlight-ukdc">
+                                <p><strong>{{ $jukdc->jurusan }}</strong></p>
                             </li>
                         </ul>
                         @endforeach
-                        <p>Jurusan lain yang cocok untuk Anda:</p>
+                        <h3>Jurusan lain yang cocok untuk Anda:</h3>
                         @foreach ($jurusan as $nama_jurusan)
                         <ul class="theme-list theme-list-light text-white">
                             <li>
@@ -29,6 +50,7 @@
                             </li>
                         </ul>
                         @endforeach
+                        
                     </div>
                     <div class="col-lg-6 py-3 wow fadeInRight">
                         <div class="img-fluid text-center">

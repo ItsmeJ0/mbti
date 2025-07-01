@@ -8,6 +8,7 @@ use App\Models\HasilMBTI;
 use App\Models\Jurusan;
 use App\Models\Jurusan_ukdc;
 use App\Models\Pengguna;
+use App\Models\PenjelasanTipeMBTI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -120,8 +121,9 @@ class HasilTestController extends Controller
                 // Kirim email
                 Mail::to($pengguna->email)->send(new HasilMbtiMail($pengguna->nama, $tipembti, $jurusan_ukdc, $jurusan, $pdfPath));
                 unlink($pdfPath); // hapus file
-
-                return view('hasil.hasil', compact('tipembti', 'jurusan', 'jurusan_ukdc', 'dataChart'));
+                $namaUser = DB::table('pengguna')->where('id', $pengguna_id)->value('nama');
+                $penjelasanTipe = PenjelasanTipeMBTI::where('tipe_mbti', $tipembti)->value('penjelasan');
+                return view('hasil.hasil', compact('tipembti', 'jurusan', 'jurusan_ukdc', 'dataChart', 'namaUser', 'penjelasanTipe'));
             }
         }
     }
