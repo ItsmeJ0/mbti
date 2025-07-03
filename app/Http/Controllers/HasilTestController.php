@@ -99,7 +99,7 @@ class HasilTestController extends Controller
                     ],
                     'options' => ['scale' => ['ticks' => ['beginAtZero' => true]]]
                 ]));
-
+                dd($dataChart);
                 $imageData = file_get_contents($chartUrl);
                 $chartImage  = base64_encode($imageData);
                 
