@@ -76,6 +76,16 @@ class HasilTestController extends Controller
                 $pengguna = Pengguna::find($pengguna_id);
 
                 $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
+                $dataChart = [
+                    ($hasil->nilai_I),
+                    ($hasil->nilai_E),
+                    ($hasil->nilai_S),
+                    ($hasil->nilai_N),
+                    ($hasil->nilai_T),
+                    ($hasil->nilai_F),
+                    ($hasil->nilai_J),
+                    ($hasil->nilai_P),
+                ];
                 // $dataChart = [
                 //     max(10, $hasil->nilai_I * 100),
                 //     max(10, $hasil->nilai_E * 100),
@@ -86,23 +96,23 @@ class HasilTestController extends Controller
                 //     max(10, $hasil->nilai_J * 100),
                 //     max(10, $hasil->nilai_P * 100),
                 // ];
-                function filterAndScale($value) {
-                    if (!is_numeric($value) || $value < 0 || $value > 1) {
-                        return 10; // fallback untuk nilai rusak
-                    }
-                    return max(10, $value * 100);
-                }
+                // function filterAndScale($value) {
+                //     if (!is_numeric($value) || $value < 0 || $value > 1) {
+                //         return 10; // fallback untuk nilai rusak
+                //     }
+                //     return max(10, $value * 100);
+                // }
                 
-                $dataChart = [
-                    filterAndScale($hasil->nilai_I),
-                    filterAndScale($hasil->nilai_E),
-                    filterAndScale($hasil->nilai_S),
-                    filterAndScale($hasil->nilai_N),
-                    filterAndScale($hasil->nilai_T),
-                    filterAndScale($hasil->nilai_F),
-                    filterAndScale($hasil->nilai_J),
-                    filterAndScale($hasil->nilai_P),
-                ];
+                // $dataChart = [
+                //     filterAndScale($hasil->nilai_I),
+                //     filterAndScale($hasil->nilai_E),
+                //     filterAndScale($hasil->nilai_S),
+                //     filterAndScale($hasil->nilai_N),
+                //     filterAndScale($hasil->nilai_T),
+                //     filterAndScale($hasil->nilai_F),
+                //     filterAndScale($hasil->nilai_J),
+                //     filterAndScale($hasil->nilai_P),
+                // ];
                 $chartUrl = 'https://quickchart.io/chart?c=' . urlencode(json_encode([
                     'type' => 'radar',
                     'data' => [
