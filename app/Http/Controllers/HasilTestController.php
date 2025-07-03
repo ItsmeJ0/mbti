@@ -76,26 +76,26 @@ class HasilTestController extends Controller
                 $pengguna = Pengguna::find($pengguna_id);
 
                 $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
-                $dataChart = [
-                    ($hasil->nilai_I),
-                    ($hasil->nilai_E),
-                    ($hasil->nilai_S),
-                    ($hasil->nilai_N),
-                    ($hasil->nilai_T),
-                    ($hasil->nilai_F),
-                    ($hasil->nilai_J),
-                    ($hasil->nilai_P),
-                ];
                 // $dataChart = [
-                //     max(10, $hasil->nilai_I * 100),
-                //     max(10, $hasil->nilai_E * 100),
-                //     max(10, $hasil->nilai_S * 100),
-                //     max(10, $hasil->nilai_N * 100),
-                //     max(10, $hasil->nilai_T * 100),
-                //     max(10, $hasil->nilai_F * 100),
-                //     max(10, $hasil->nilai_J * 100),
-                //     max(10, $hasil->nilai_P * 100),
+                //     ($hasil->nilai_I),
+                //     ($hasil->nilai_E),
+                //     ($hasil->nilai_S),
+                //     ($hasil->nilai_N),
+                //     ($hasil->nilai_T),
+                //     ($hasil->nilai_F),
+                //     ($hasil->nilai_J),
+                //     ($hasil->nilai_P),
                 // ];
+                $dataChart = [
+                    max(10, $hasil->nilai_I * 100),
+                    max(10, $hasil->nilai_E * 100),
+                    max(10, $hasil->nilai_S * 100),
+                    max(10, $hasil->nilai_N * 100),
+                    max(10, $hasil->nilai_T * 100),
+                    max(10, $hasil->nilai_F * 100),
+                    max(10, $hasil->nilai_J * 100),
+                    max(10, $hasil->nilai_P * 100),
+                ];
                 // function filterAndScale($value) {
                 //     if (!is_numeric($value) || $value < 0 || $value > 1) {
                 //         return 10; // fallback untuk nilai rusak
