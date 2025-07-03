@@ -76,15 +76,32 @@ class HasilTestController extends Controller
                 $pengguna = Pengguna::find($pengguna_id);
 
                 $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
+                // $dataChart = [
+                //     max(10, $hasil->nilai_I * 100),
+                //     max(10, $hasil->nilai_E * 100),
+                //     max(10, $hasil->nilai_S * 100),
+                //     max(10, $hasil->nilai_N * 100),
+                //     max(10, $hasil->nilai_T * 100),
+                //     max(10, $hasil->nilai_F * 100),
+                //     max(10, $hasil->nilai_J * 100),
+                //     max(10, $hasil->nilai_P * 100),
+                // ];
+                function filterAndScale($value) {
+                    if (!is_numeric($value) || $value < 0 || $value > 1) {
+                        return 10; // fallback untuk nilai rusak
+                    }
+                    return max(10, $value * 100);
+                }
+                
                 $dataChart = [
-                    max(10, $hasil->nilai_I * 100),
-                    max(10, $hasil->nilai_E * 100),
-                    max(10, $hasil->nilai_S * 100),
-                    max(10, $hasil->nilai_N * 100),
-                    max(10, $hasil->nilai_T * 100),
-                    max(10, $hasil->nilai_F * 100),
-                    max(10, $hasil->nilai_J * 100),
-                    max(10, $hasil->nilai_P * 100),
+                    filterAndScale($hasil->nilai_I),
+                    filterAndScale($hasil->nilai_E),
+                    filterAndScale($hasil->nilai_S),
+                    filterAndScale($hasil->nilai_N),
+                    filterAndScale($hasil->nilai_T),
+                    filterAndScale($hasil->nilai_F),
+                    filterAndScale($hasil->nilai_J),
+                    filterAndScale($hasil->nilai_P),
                 ];
                 $chartUrl = 'https://quickchart.io/chart?c=' . urlencode(json_encode([
                     'type' => 'radar',
