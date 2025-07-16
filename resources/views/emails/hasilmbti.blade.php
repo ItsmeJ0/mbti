@@ -31,4 +31,6 @@
     @endif
 
     <p style="margin-top: 30px;">Terima kasih telah menggunakan aplikasi <strong>DCMBTI</strong>.</p>
+    <p>by Jhonatan Laurensius</p>
+    <p>Pakar : Ibu Laksmi</p>
 </div>

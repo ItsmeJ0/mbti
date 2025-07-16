@@ -22,20 +22,26 @@ class SoalF extends Model
         ];
 
         $totalJawaban = 0;
-        $totalBobotJawaban  = 0;
+        $totalNilai = 0;
 
         foreach ($betaNodeF as $id => $value) {
-            if (isset($bobotSoalF[$id])) { // Pastikan soal ada di daftar bobot
+            if (isset($bobotSoalF[$id]) && is_numeric($value)) {
                 $bobot = $bobotSoalF[$id];
-                $hasil = $bobot * $value;
-                $totalBobotJawaban  += $value;
-                $totalJawaban += $hasil;
+                $nilai = floatval($value);
+
+                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai); // agar pembaginya aman
             }
         }
 
-        // Hitung hasil Rete I
-        $hasilReteF = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
-
+        // Hitung hasil Rete E
+        $hasilReteF = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
+        // dd($hasilReteE);
         // dd($hasilReteF);
         return $hasilReteF;
     }

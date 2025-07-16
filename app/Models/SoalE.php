@@ -25,18 +25,25 @@ class SoalE extends Model
         ];
 
         $totalJawaban = 0;
-        $totalBobotJawaban  = 0;
+        $totalNilai = 0;
 
         foreach ($betaNodeE as $id => $value) {
-            if (isset($bobotSoalE[$id])) { // Pastikan soal ada di daftar bobot
+            if (isset($bobotSoalE[$id]) && is_numeric($value)) {
                 $bobot = $bobotSoalE[$id];
-                $totalJawaban += $bobot * $value; // Mengakumulasi nilai berbobot
-                $totalBobotJawaban  += $value;           // Mengakumulasi total nilai jawaban
+                $nilai = floatval($value);
+
+                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai); // agar pembaginya aman
             }
         }
 
         // Hitung hasil Rete E
-        $hasilReteE = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
+        $hasilReteE = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
         // dd($hasilReteE);
 
         return $hasilReteE;

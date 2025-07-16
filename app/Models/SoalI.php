@@ -21,17 +21,26 @@ class SoalI extends Model
             'p14' => 0.25,
         ];
         $totalJawaban = 0;
-        $totalBobotJawaban  = 0;
+        $totalNilai = 0;
+
         foreach ($betaNodeI as $id => $value) {
-            if (isset($bobotSoalI[$id])) { // Pastikan soal ada di daftar bobot
-                $bobot = $bobotSoalI[$id];
-                $hasil = $bobot * $value;
-                $totalBobotJawaban  += $value;
-                $totalJawaban += $hasil;
+            if (isset($bobotSoalF[$id]) && is_numeric($value)) {
+                $bobot = $bobotSoalF[$id];
+                $nilai = floatval($value);
+
+                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai); // agar pembaginya aman
             }
         }
-        // Hitung hasil Rete I
-        $hasilReteI = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
+
+        // Hitung hasil Rete E
+        $hasilReteI = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
+        // dd($hasilReteE);
         return $hasilReteI;
     }
 }

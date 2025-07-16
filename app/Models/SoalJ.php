@@ -12,32 +12,37 @@ class SoalJ extends Model
     public static function ProsesJawabanJ($betaNodeJ)
     {
         $bobotSoalJ = [ // Bobot Soal (Alpha Nodes)
-            'p43'=> 1,
-            'p44'=> 1,
-            'p45'=> 0.5,
-            'p46'=> 0.75,
-            'p47'=> 0.75,
-            'p48'=> 0.5,
-            'p49'=> 0.25,
-            'p53'=> 0.25,
+            'p43' => 1,
+            'p44' => 1,
+            'p45' => 0.5,
+            'p46' => 0.75,
+            'p47' => 0.75,
+            'p48' => 0.5,
+            'p49' => 0.25,
+            'p53' => 0.25,
         ];
 
         $totalJawaban = 0;
-        $totalBobotJawaban  = 0;
+        $totalNilai = 0;
 
         foreach ($betaNodeJ as $id => $value) {
-            if (isset($bobotSoalJ[$id])) { // Pastikan soal ada di daftar bobot
+            if (isset($bobotSoalJ[$id]) && is_numeric($value)) {
                 $bobot = $bobotSoalJ[$id];
-                $hasil = $bobot * $value;
-                $totalBobotJawaban  += $value;
-                $totalJawaban += $hasil;
+                $nilai = floatval($value);
+
+                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai); // agar pembaginya aman
             }
         }
 
-        // Hitung hasil Rete I
-        $hasilReteJ = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
+        $hasilReteJ = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
 
-        // dd($hasilReteJ);
+        
         return $hasilReteJ;
     }
 }

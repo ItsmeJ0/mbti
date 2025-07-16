@@ -26,20 +26,26 @@ class SoalN extends Model
         ];
 
         $totalJawaban = 0;
-        $totalBobotJawaban  = 0;
+        $totalNilai = 0;
 
         foreach ($betaNodeN as $id => $value) {
-            if (isset($bobotSoalN[$id])) { // Pastikan soal ada di daftar bobot
+            if (isset($bobotSoalN[$id]) && is_numeric($value)) {
                 $bobot = $bobotSoalN[$id];
-                $hasil = $bobot * $value;
-                $totalBobotJawaban  += $value;
-                $totalJawaban += $hasil;
+                $nilai = floatval($value);
+
+                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai); // agar pembaginya aman
             }
         }
 
-        // Hitung hasil Rete I
-        $hasilReteN = $totalBobotJawaban  ? ($totalJawaban / $totalBobotJawaban ) : 0;
-
+        // Hitung hasil Rete E
+        $hasilReteN = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
+        // dd($hasilReteE);
         // dd($hasilReteN);
         return $hasilReteN;
     }
