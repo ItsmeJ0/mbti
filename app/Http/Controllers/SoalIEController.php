@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\HasilMBTI;
 use App\Models\Pengguna;
 use App\Models\SoalE;
@@ -11,13 +10,10 @@ use Illuminate\Support\Str;
 
 class SoalIEController extends Controller
 {
-    //
     public function index()
     {
         return view('soal.tes');
     }
-
-
     public function inputdataIE(Request $request)
     {
         $pengguna_id = session('pengguna_id');
@@ -49,13 +45,13 @@ class SoalIEController extends Controller
         ];
         $betaNodeI = [];
         foreach ($datajawaban as $key => $value) {
-            if (in_array($key, $alphaNodeI)) { // Memeriksa apakah key ada di dalam daftar alpha nodes
+            if (in_array($key, $alphaNodeI)) {
                 $betaNodeI[$key] = $value;
             }
         }
         $betaNodeE = [];
         foreach ($datajawaban as $key => $value) {
-            if (in_array($key, $alphaNodeE)) { // Memeriksa apakah key ada di dalam daftar alpha nodes
+            if (in_array($key, $alphaNodeE)) { 
                 $betaNodeE[$key] = $value;
             }
         }
@@ -74,7 +70,6 @@ class SoalIEController extends Controller
             Pengguna::where('id', $pengguna_id)->update(['E' => 0]);
             Pengguna::where('id', $pengguna_id)->update(['E' => 1]);
         }
-        // return view('testinghasiljawaban', compact('hasilI', 'hasilE'));
         return redirect()->route('external.soal2');
     }
 
