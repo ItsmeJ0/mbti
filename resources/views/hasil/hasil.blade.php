@@ -22,12 +22,10 @@
 <body>
     @include('partials.nav')
     <div class="back-to-top"></div>
-
     <div class="page-section banner-info">
         <div class="wrap bg-image">
             <div class="container">
                 <div class="row align-items-center">
-
                     <div class="col-lg-6 py-3 pr-lg-5 wow fadeInUp">
                         <h2 class="title-section">Halo, {{ $namaUser }}!</h2>
                         <h3 class="title-section"> kepribadian Anda adalah
@@ -49,17 +47,13 @@
                                 <p>{{ $nama_jurusan }}</p>
                             </li>
                         </ul>
-                        @endforeach
-                        
+                        @endforeach                        
                     </div>
                     <div class="col-lg-6 py-3 wow fadeInRight">
                         <div class="img-fluid text-center">
                             <div style="background-color: white; padding: 20px; border-radius: 10px;">
                                 <canvas id="radarChart" width="400" height="400"></canvas>
                             </div>
-
-
-                            <!-- <img src="{{ asset('assets/img/g2.svg') }}" alt=""> -->
                         </div>
                     </div>
                 </div>
@@ -76,7 +70,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('radarChart').getContext('2d');
-
         const data = {
             labels: [
                 'Introvert (I)', 'Extrovert (E)',
@@ -93,7 +86,6 @@
                 borderWidth: 4
             }]
         };
-
         const config = {
             type: 'radar',
             data: data,
@@ -102,14 +94,11 @@
                     r: {
                         beginAtZero: true,
                         suggestedMax: 10,
-
                     }
                 }
             }
         };
-
         const radarChart = new Chart(ctx, config);
     </script>
 </body>
-
 </html>

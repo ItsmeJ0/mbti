@@ -7,7 +7,7 @@ class SoalI extends Model
     use HasFactory;
     public static function ProsesJawabanI($betaNodeI)
     {
-        $bobotSoalI = [ // Bobot Soal (Alpha Nodes)
+        $bobotSoalI = [
             'p1' => 0.75,
             'p2' => 1,
             'p3' => 1,
@@ -22,25 +22,19 @@ class SoalI extends Model
         ];
         $totalJawaban = 0;
         $totalNilai = 0;
-
         foreach ($betaNodeI as $id => $value) {
-            if (isset($bobotSoalF[$id]) && is_numeric($value)) {
-                $bobot = $bobotSoalF[$id];
+            if (isset($bobotSoalI[$id]) && is_numeric($value)) {
+                $bobot = $bobotSoalI[$id];
                 $nilai = floatval($value);
-
-                // Validasi: pastikan nilai dalam rentang -0.4 sampai 0.4
                 if ($nilai < -0.4 || $nilai > 0.4) {
                     continue;
                 }
-
                 $totalJawaban += $bobot * $nilai;
-                $totalNilai += abs($nilai); // agar pembaginya aman
+                $totalNilai += abs($nilai);
             }
         }
-
         // Hitung hasil Rete E
         $hasilReteI = $totalNilai ? ($totalJawaban / $totalNilai) : 0;
-        // dd($hasilReteE);
         return $hasilReteI;
     }
 }
