@@ -21,6 +21,84 @@ class HasilTestController extends Controller
     {
         $pengguna_id = session('pengguna_id');
         $user = DB::table('pengguna')->where('id', $pengguna_id)->first();
+        if ($user) {
+            $kesimpulan = $this->tentukanKepribadian($user);
+            if (empty($kesimpulan)) {
+                return "Tidak dapat menentukan tipe kepribadian.";
+            } else {
+                $tipembti = implode('', $kesimpulan);
+                // Update hasil ke dalam tabel pengguna
+                DB::table('pengguna')->where('id', $pengguna_id)->update(['hasil' => $tipembti]);
+                $rules = [
+                    'ENFJ' => ['Psikologi', 'Ilmu Komunikasi', 'Pendidikan', 'Manajemen', 'Hubungan Masyarakat'],
+                    'ENFP' => ['Psikologi', 'Ilmu Komputer', 'Ilmu Komunikasi', 'Pendidikan', 'Manajemen'],
+                    'ENTJ' => ['Manajemen', 'Akuntansi', 'Hukum', 'Psikologi', 'Administrasi Bisnis'],
+                    'ENTP' => ['Ilmu Komputer', 'Manajemen', 'Arsitektur', 'Hukum', 'Sistem Informasi'],
+                    'ESFJ' => ['Psikologi', 'Keperawatan', 'Pendidikan', 'Akuntansi', 'Manajemen'],
+                    'ESFP' => ['Psikologi', 'Ilmu Komunikasi', 'Manajemen', 'Pendidikan Jasmani', 'Sosiologi'],
+                    'ESTJ' => ['Manajemen', 'Akuntansi', 'Hukum', 'Administrasi Bisnis', 'Pendidikan'],
+                    'ESTP' => ['Manajemen', 'Ilmu Komputer', 'Teknik Mesin', 'Pendidikan Jasmani', 'Ilmu Komunikasi'],
+                    'INFJ' => ['Psikologi', 'Arsitektur', 'Ilmu Komunikasi', 'Pendidikan', 'Sosiologi'],
+                    'INFP' => ['Psikologi', 'Seni', 'Desain Komunikasi Visual', 'Pendidikan', 'Ilmu Hukum'],
+                    'INTJ' => ['Teknik Informatika', 'Psikologi', 'Arsitektur', 'Matematika', 'Hukum'],
+                    'INTP' => ['Teknik Informatika', 'Fisika', 'Psikologi', 'Arsitektur', 'Ilmu Hukum'],
+                    'ISFJ' => ['Psikologi', 'Pendidikan', 'Keperawatan', 'Ilmu Komunikasi', 'Manajemen'],
+                    'ISFP' => ['Desain Interior', 'Psikologi', 'Pendidikan Jasmani', 'Keperawatan', 'Ilmu Hukum'],
+                    'ISTJ' => ['Akuntansi', 'Manajemen', 'Ilmu Komputer', 'Hukum', 'Sistem Informasi'],
+                    'ISTP' => ['Teknik Mesin', 'Teknik Industri', 'Ilmu Komputer', 'Manajemen', 'Ilmu Kesehatan']
+                ];
+                $jurusan_ukdc = Jurusan_ukdc::where('mbti', $tipembti)->get();
+                $jurusan = $rules[$tipembti];
+                $pengguna = Pengguna::find($pengguna_id);
+                $hasil = HasilMBTI::where('pengguna_id', session('pengguna_id'))->latest()->first();
+                $dataChart = [
+                    max(10, $hasil->nilai_I * 100),
+                    max(10, $hasil->nilai_E * 100),
+                    max(10, $hasil->nilai_S * 100),
+                    max(10, $hasil->nilai_N * 100),
+                    max(10, $hasil->nilai_T * 100),
+                    max(10, $hasil->nilai_F * 100),
+                    max(10, $hasil->nilai_J * 100),
+                    max(10, $hasil->nilai_P * 100),
+                ];
+                $chartUrl = 'https://quickchart.io/chart?c=' . urlencode(json_encode([
+                    'type' => 'radar',
+                    'data' => [
+                        'labels' => ['I', 'E', 'S', 'N', 'T', 'F', 'J', 'P'],
+                        'datasets' => [[
+                            'label' => 'Skor MBTI',
+                            'data' => $dataChart,
+                            'borderColor' => 'rgba(54, 162, 235, 1)',
+                            'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
+                        ]]
+                    ],
+                    'options' => ['scale' => ['ticks' => ['beginAtZero' => true]]]
+                ]));
+                $imageData = file_get_contents($chartUrl);
+                $chartImage  = base64_encode($imageData);
+                
+                $pdf = app('dompdf.wrapper');
+                $pdf->loadView('pdf.pdfhasilmbti', [
+                    'nama' => $pengguna->nama,
+                    'tipe' => $tipembti,
+                    'jurusan_ukdc' => $jurusan_ukdc,
+                    'jurusan' => $jurusan,
+                    'chartImage' => $chartImage,
+                ]);
+                $pdfPath = storage_path('app/public/hasil_' . $pengguna->id . '.pdf');
+                $pdf->save($pdfPath);
+                Mail::to($pengguna->email)->send(new HasilMbtiMail($pengguna->nama, $tipembti, $jurusan_ukdc, $jurusan, $pdfPath));
+                unlink($pdfPath); // hapus file
+                $namaUser = DB::table('pengguna')->where('id', $pengguna_id)->value('nama');
+                $penjelasanTipe = PenjelasanTipeMBTI::where('tipe_mbti', $tipembti)->value('penjelasan');
+                return view('hasil.hasil', compact('tipembti', 'jurusan', 'jurusan_ukdc', 'dataChart', 'namaUser', 'penjelasanTipe'));
+            }
+        }
+    }
+    public function indexxx()
+    {
+        $pengguna_id = session('pengguna_id');
+        $user = DB::table('pengguna')->where('id', $pengguna_id)->first();
 
         if ($user) {
             $kesimpulan = $this->tentukanKepribadian($user);

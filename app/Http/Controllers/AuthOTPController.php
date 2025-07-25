@@ -36,7 +36,6 @@ class AuthOTPController extends Controller
             ]);
             // SIMPAN ULANG pengguna_id ke session
             session(['pengguna_id' => $user->id]);
-
             // return redirect()->route('soal.mbti')->with('success', 'Verifikasi berhasil. Silakan mulai tes!');
             return redirect()->route('external.soal1')->with([]);
         }

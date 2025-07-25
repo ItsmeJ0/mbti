@@ -22,11 +22,7 @@ class InputNamaController extends Controller
             'email' => 'required|email',
             'nama' => 'required|string',
         ]);
-
-        // Generate OTP
         $otp = rand(100000, 999999);
-
-        $nama = $request->input('nama');
         $pengguna = Pengguna::create([
             'nama' => $request->nama,
             'email' => $request->email,
@@ -62,9 +58,7 @@ class InputNamaController extends Controller
         session([
             'pengguna_id' => $pengguna->id,
             'email' => $pengguna->email
-        ]);
-        
+        ]);        
         return redirect()->route('otp.verify.form')->with('pengguna_id', $pengguna->id);
-        // return redirect()->route('external.soal1')->with([]);
     }
 }
