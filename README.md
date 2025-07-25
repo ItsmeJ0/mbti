@@ -26,3 +26,17 @@ Dengan menggabungkan metode tersebut, sistem memberikan rekomendasi jurusan yang
 ---
 
 ## 📂 Struktur Proyek  
+📦 mbti-system
+┣ 📂 app
+┣ 📂 bootstrap
+┣ 📂 config
+┣ 📂 database
+┣ 📂 public
+┣ 📂 resources
+┃ ┗ 📂 views
+┣ 📂 routes
+┣ 📂 storage
+┣ 📂 tests
+┗ 📜 artisan
+
+Author : Jhonatan Laurensius Tjahjadi
