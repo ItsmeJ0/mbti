@@ -9,7 +9,29 @@ class SoalE extends Model
 {
     use HasFactory;
     protected $table = 'soal_e';
-    public static function ProsesJawabanE($betaNodeE)
+    public static function ProsesJawaban($betaNode, $bobotSoal)
+    {
+        $totalJawaban = 0;
+        $totalNilai = 0;
+
+        foreach ($betaNode as $id => $value) {
+            if (isset($bobotSoal[$id]) && is_numeric($value)) {
+                $bobot = $bobotSoal[$id];
+                $nilai = floatval($value);
+
+                if ($nilai < -0.4 || $nilai > 0.4) {
+                    continue;
+                }
+
+                $totalJawaban += $bobot * $nilai;
+                $totalNilai += abs($nilai);
+            }
+        }
+
+        return $totalNilai ? ($totalJawaban / $totalNilai) : 0;
+    }
+
+    public static function ProsesJawabanExx($betaNodeE)
     {
         $bobotSoalE = [ // Bobot Soal (Alpha Nodes)
             'p4' => 0.25,
