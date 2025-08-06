@@ -34,7 +34,7 @@
 
             </div>
         </div>
-        <p class="text-center" id="copyright">Copyright &copy; 2020. This template design and develop by <a href="https://macodeid.com/" target="_blank">MACode ID</a></p>
+        <p class="text-center" id="copyright">Copyright &copy; 2020. This app developed by Jhonatan. Using template design by <a href="https://macodeid.com/" target="_blank">MACode ID</a></p>
     </footer>
 
 

@@ -26,46 +26,6 @@ class SoalIEController extends Controller
     {
         $pengguna_id = session('pengguna_id');
         $datajawaban = $request->all();
-        // $alphaNodeI = [ // Bobot Soal (Alpha Nodes)
-        //     'p1',
-        //     'p2',
-        //     'p3',
-        //     'p4',
-        //     'p5',
-        //     'p6',
-        //     'p7',
-        //     'p8',
-        //     'p10',
-        //     'p12',
-        //     'p14',
-        // ];
-        // $alphaNodeE = [ // Bobot Soal (Alpha Nodes)
-        //     'p4',
-        //     'p5',
-        //     'p7',
-        //     'p8',
-        //     'p9',
-        //     'p10',
-        //     'p11',
-        //     'p12',
-        //     'p13',
-        //     'p14',
-        // ];
-        // $betaNodeI = [];
-        // foreach ($datajawaban as $key => $value) {
-        //     if (in_array($key, $alphaNodeI)) {
-        //         $betaNodeI[$key] = $value;
-        //     }
-        // }
-        // $betaNodeE = [];
-        // foreach ($datajawaban as $key => $value) {
-        //     if (in_array($key, $alphaNodeE)) {
-        //         $betaNodeE[$key] = $value;
-        //     }
-        // }
-        // $hasilI = SoalI::ProsesJawabanI($betaNodeI);
-        // $hasilE = SoalE::ProsesJawabanE($betaNodeE);
-
         $alphaNodeI = DB::table('question_weights')
             ->where('indikator', 'I')
             ->pluck('kode_soal')
@@ -86,7 +46,6 @@ class SoalIEController extends Controller
         $betaNodeE = array_intersect_key($datajawaban, array_flip($alphaNodeE));
         $hasilI = Soal::ProsesJawaban($betaNodeI, $bobotSoalI);
         $hasilE = Soal::ProsesJawaban($betaNodeE, $bobotSoalE);
-        dd($hasilE);
 
         HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
             'nilai_I' => $hasilI,

@@ -20,7 +20,7 @@ class SoalJPController extends Controller
             ->where('dimension', 'JP')
             ->orderByRaw('CAST(SUBSTRING(kode, 2) AS UNSIGNED) ASC')
             ->get();
-
+            
         return view('soal.tes4', compact('questions'));
     }
 
@@ -83,6 +83,7 @@ class SoalJPController extends Controller
         $betaNodeP = array_intersect_key($datajawaban, array_flip($alphaNodeP));
         $hasilJ = Soal::ProsesJawaban($betaNodeJ, $bobotSoalJ);
         $hasilP = Soal::ProsesJawaban($betaNodeP, $bobotSoalP);
+
         HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
             'nilai_J' => $hasilJ,
             'nilai_P' => $hasilP,

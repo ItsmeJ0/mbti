@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthOTPController;
 use App\Http\Controllers\HasilTestController;
 use App\Http\Controllers\HomeController;
@@ -15,6 +17,7 @@ Route::get('/inputnama', [InputNamaController::class, 'index'])->name('external.
 Route::post('/inputnama-action', [InputNamaController::class, 'inputnama'])->name('external.actioninputnama');
 Route::get('/otp/verify', [AuthOTPController::class, 'showOtpVerifyForm'])->name('otp.verify.form');
 Route::post('/otp/verify', [AuthOTPController::class, 'verifyOtp'])->name('otp.verify');
+
 Route::middleware(['verified.otp'])->group(function () {
     Route::get('/soal1', [SoalIEController::class, 'index'])->name('external.soal1');
     Route::post('/soal1-action', [SoalIEController::class, 'inputdataIE'])->name('external.actioninputhasil');
@@ -26,3 +29,13 @@ Route::middleware(['verified.otp'])->group(function () {
     Route::post('/soal4-action', [SoalJPController::class, 'inputdataJP'])->name('external.actioninputhasil4');
     Route::get('/Hasil-proses', [HasilTestController::class, 'index'])->name('external.proseshasil');
 });
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::post('/admin/inputnama-action', [AdminController::class, 'login'])->name('admin.actioninputnama');
+Route::post('/admin/tambahsoal', [AdminController::class, 'login'])->name('admin.tambahsoal');
+Route::post('/admin/editsoal', [AdminController::class, 'login'])->name('admin.editsoal');
+Route::post('/admin/hapussoal', [AdminController::class, 'login'])->name('admin.hapussoal');
+Route::post('/admin/hapusbobot', [AdminController::class, 'login'])->name('admin.hapusbobot');
+Route::post('/admin/tambahbobot', [AdminController::class, 'login'])->name('admin.tambahbobot');
+

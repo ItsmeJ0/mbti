@@ -81,6 +81,7 @@ class SoalTFController extends Controller
         $betaNodeF = array_intersect_key($datajawaban, array_flip($alphaNodeF));
         $hasilT = Soal::ProsesJawaban($betaNodeT, $bobotSoalT);
         $hasilF = Soal::ProsesJawaban($betaNodeF, $bobotSoalF);
+
         HasilMBTI::where('pengguna_id', $pengguna_id)->latest()->first()->update([
             'nilai_T' => $hasilT,
             'nilai_F' => $hasilF,

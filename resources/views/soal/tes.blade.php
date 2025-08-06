@@ -35,6 +35,7 @@
                 @csrf
                 @foreach($questions as $question)
                 <div class="form-group">
+                    <label >{{ $question->kode }} : </label>
                     <label for="{{ $question->kode }}">{{ $question->teks_soal }}</label>
                     <br>
                     <label>Tidak</label>

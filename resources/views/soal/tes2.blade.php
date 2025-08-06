@@ -37,7 +37,36 @@
 
             <form action="{{ route('external.actioninputhasil2') }}" method="POST">
                 @csrf
+                @foreach($questions as $question)
                 <div class="form-group">
+                <label >{{ $question->kode }} : </label>
+                    <label for="{{ $question->kode }}">{{ $question->teks_soal }}</label>
+                    <br>
+                    <label>Tidak</label>
+                    @for($i = 1; $i <= 5; $i++)
+                        @php
+                        $value=match($i) {
+                        1=> -0.4,
+                        2 => -0.2,
+                        3 => 0,
+                        4 => 0.2,
+                        5 => 0.4,
+                        };
+                        @endphp
+                        <div class="custom-control custom-radio d-inline-block mr-3">
+                            <input class="custom-control-input"
+                                type="radio"
+                                id="{{ $question->kode }}-{{ $i }}"
+                                name="{{ $question->kode }}"
+                                value="{{ $value }}"
+                                @if($i===1) required @endif>
+                            <label for="{{ $question->kode }}-{{ $i }}" class="custom-control-label">{{ $i }}</label>
+                        </div>
+                        @endfor
+                        <label>Ya</label>
+                </div>
+                @endforeach
+                <!-- <div class="form-group">
                     <label for="p15">Anda lebih suka berpikir tentang konsep-konsep abstrak dan ide-ide besar?</label>
                     <br>
                     <label for="p15">Tidak</label>
@@ -400,7 +429,7 @@
                         <label for="p28-5" class="custom-control-label">5</label>
                     </div>
                     <label for="p28">Ya</label>
-                </div>
+                </div> -->
                 <button type="submit" class="btn btn-primary" name="LANJUTKAN">Lanjut</button>
             </form>
         </div>
