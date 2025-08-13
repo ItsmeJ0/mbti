@@ -31,9 +31,8 @@
 {{-- MODAL EDIT QUESTION --}}
 <div class="modal fade" id="modalEditQuestion" tabindex="-1">
     <div class="modal-dialog">
-        <form id="formEditQuestion" method="POST" class="modal-content">
+        <form method="POST" action="{{ route('admin.editsoal') }}" id="formEditQuestion" class="modal-content">
             @csrf
-            @method('PUT')
             <div class="modal-header">
                 <h5 class="modal-title">Edit Question</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -51,6 +50,7 @@
                     <label>Dimension</label>
                     <input type="text" name="dimension" id="edit_dimension" class="form-control" required>
                 </div>
+                <input type="hidden" name="id" id="edit_id">
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Update</button>
@@ -92,9 +92,8 @@
 {{-- MODAL EDIT WEIGHT --}}
 <div class="modal fade" id="modalEditWeight" tabindex="-1">
     <div class="modal-dialog">
-        <form id="formEditWeight" method="POST" class="modal-content">
+        <form form action="{{ route('admin.editbobot') }}" id="formEditWeight" method="POST" class="modal-content">
             @csrf
-            @method('PUT')
             <div class="modal-header">
                 <h5 class="modal-title">Edit Weight</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -113,6 +112,8 @@
                     <input type="number" step="0.01" name="bobot" id="edit_bobot" class="form-control" required>
                 </div>
             </div>
+
+            <input type="hidden" name="id" id="edit_id_weight">
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>

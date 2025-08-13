@@ -33,9 +33,11 @@ Route::middleware(['verified.otp'])->group(function () {
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 Route::post('/admin/inputnama-action', [AdminController::class, 'login'])->name('admin.actioninputnama');
-Route::post('/admin/tambahsoal', [AdminController::class, 'login'])->name('admin.tambahsoal');
-Route::post('/admin/editsoal', [AdminController::class, 'login'])->name('admin.editsoal');
-Route::post('/admin/hapussoal', [AdminController::class, 'login'])->name('admin.hapussoal');
-Route::post('/admin/hapusbobot', [AdminController::class, 'login'])->name('admin.hapusbobot');
-Route::post('/admin/tambahbobot', [AdminController::class, 'login'])->name('admin.tambahbobot');
+
+Route::post('/admin/tambahsoal', [AdminController::class, 'tambahsoal'])->name('admin.tambahsoal');
+Route::post('/admin/tambahbobot', [AdminController::class, 'tambahbobot'])->name('admin.tambahbobot');
+Route::post('/admin/editsoal', [AdminController::class, 'editsoal'])->name('admin.editsoal');
+Route::post('/admin/editbobot', [AdminController::class, 'editbobot'])->name('admin.editbobot');
+Route::post('/admin/hapussoal', [AdminController::class, 'hapussoal'])->name('admin.hapussoal');
+Route::post('/admin/hapusbobot', [AdminController::class, 'hapusbobot'])->name('admin.hapusbobot');
 
